@@ -1,1 +1,73 @@
+import golosinas.*
 
+describe "Test de golosinas parte 1" {
+  test "Bombon atributos iniciales" {
+    assert.equals(5, bombon.precio())
+    assert.equals(15, bombon.gramos())
+    bombon.mordisco()
+    assert.equals(11, bombon.gramos())
+    assert.equals(frutilla, bombon.sabor())
+    assert.that(bombon.gluten())
+  }
+
+  test "Alfajor atributos iniciales" {
+    assert.equals(12, alfajor.precio())
+    assert.equals(300, alfajor.gramos())
+    alfajor.mordisco()
+    assert.equals(240, alfajor.gramos())
+    assert.equals(chocolate, alfajor.sabor())
+    assert.notThat(alfajor.gluten())
+  }
+
+  test "Caramelo atributos iniciales" {
+    assert.equals(1, caramelo.precio())
+    assert.equals(5, caramelo.gramos())
+    caramelo.mordisco()
+    assert.equals(4, caramelo.gramos())
+    assert.equals(frutilla, caramelo.sabor())
+    assert.that(caramelo.gluten())
+  }
+
+  test "Chupetin atributos iniciales" {
+    assert.equals(2, chupetin.precio())
+    assert.equals(7, chupetin.gramos())
+    chupetin.mordisco()
+    assert.equals(6.3,chupetin.gramos())
+    assert.equals(naranja, chupetin.sabor())
+    assert.that(chupetin.gluten())
+  }
+
+  test "Oblea atributos iniciales" {
+    assert.equals(5, oblea.precio())
+    assert.equals(250, oblea.gramos())
+    oblea.mordisco()
+    assert.equals(125, oblea.gramos())
+    assert.equals(vainilla, oblea.sabor())
+    assert.notThat(oblea.gluten())
+  }
+
+  test "Chocolatin atributos iniciales" {
+    chocolatin.gramos(20)
+    assert.equals(10, chocolatin.precio())
+    assert.equals(20, chocolatin.gramos())
+    chocolatin.mordisco()
+    assert.equals(18, chocolatin.gramos())
+    assert.equals(10, chocolatin.precio())
+    assert.equals(chocolate, chocolatin.sabor())
+    assert.notThat(chocolatin.gluten())
+  }
+
+  test "Pastilla Tutti-frutti atributos iniciales" {
+    pastillaTutFrut.gluten(true)
+    assert.equals(7, pastillaTutFrut.precio())
+    assert.equals(5, pastillaTutFrut.gramos())
+    assert.equals(frutilla, pastillaTutFrut.sabor())
+    pastillaTutFrut.mordisco()
+    assert.equals(chocolate, pastillaTutFrut.sabor())
+    pastillaTutFrut.mordisco()
+    assert.equals(naranja, pastillaTutFrut.sabor())
+    pastillaTutFrut.mordisco()
+    assert.equals(frutilla, pastillaTutFrut.sabor())
+    assert.that(pastillaTutFrut.gluten())
+  }
+}
