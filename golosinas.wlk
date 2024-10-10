@@ -74,7 +74,7 @@ class Chocolatin inherits Golosina(sabor = chocolate, gluten = false, gramos = p
 // const chocolatin = new Chocolatin(pesoIni = 2)
 
 //*****************************************************************
-class GolosinaBaniada inherits Golosina(gramos = golosinaBase.gramos(), precio = golosinaBase.precio(), gluten = golosinaBase.gluten(), sabor = golosinaBase.sabor()) {
+class GolosinaBaniada inherits Golosina(gramos = golosinaBase.gramos() + self.baniado(), precio = golosinaBase.precio(), gluten = golosinaBase.gluten(), sabor = golosinaBase.sabor()) {
     var property baniado = 4
     var property golosinaBase
 
@@ -138,7 +138,7 @@ object mariano {
   method golosinaDeSabor(sabor) = bolsa.find { golosina => golosina.sabor() == sabor }
   method golosinasDeSabor(sabor) = bolsa.filter { golosina => golosina.sabor() == sabor}
   method sabores() = bolsa.map{ golosina => golosina.sabor() }.asSet()
-  method golosinaMasCara() = bolsa.map{golosina => golosina.precio()}.max()
+  method golosinaMasCara() = bolsa.max{golosina => golosina.precio()}
   method pesoGolosinas() = bolsa.sum { golosina => golosina.gramos() }
 
   method golosinasFaltantes(golosinasDeseadas) = golosinasDeseadas.filter{ golosina => !(bolsa.contains(golosina))}
