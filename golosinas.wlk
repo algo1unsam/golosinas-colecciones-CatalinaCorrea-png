@@ -1,8 +1,8 @@
 class Golosina {
-    var property precio = 0
-    var property sabor = null
-    var property gramos = null
-    var property gluten = null
+    var property precio
+    var property sabor
+    var property gramos
+    var property gluten
 
   method mordisco() {
     gramos = gramos * 0.8 - 1
@@ -57,7 +57,7 @@ class Oblea inherits Golosina(precio = 5, sabor = vainilla, gramos = 250, gluten
 }
 
 //*****************************************************************
-class Chocolatin inherits Golosina(sabor = chocolate, gluten = false) {
+class Chocolatin inherits Golosina(sabor = chocolate, gluten = false, gramos = pesoIni, precio = 0) {
     
     var property pesoIni = 0
 
@@ -74,8 +74,8 @@ class Chocolatin inherits Golosina(sabor = chocolate, gluten = false) {
 // const chocolatin = new Chocolatin(pesoIni = 2)
 
 //*****************************************************************
-class GolosinaBaniada inherits Golosina() {
-    var baniado = 4
+class GolosinaBaniada inherits Golosina(gramos = golosinaBase.gramos(), precio = golosinaBase.precio(), gluten = golosinaBase.gluten(), sabor = golosinaBase.sabor()) {
+    var property baniado = 4
     var property golosinaBase
 
     override method mordisco() {
@@ -83,31 +83,30 @@ class GolosinaBaniada inherits Golosina() {
         baniado -= 2
     }
 
-    method baniarGolosina() {
-      gramos = golosinaBase.gramos() + baniado.max(0)
-      precio = golosinaBase.precio() + 2
-      gluten = golosinaBase.gluten()
-      sabor = golosinaBase.sabor()
-      // self.golosinaBase(golosinaBase)
-    } 
+    // method baniarGolosina() {
+    //   gramos = self.gramos()
+    //   precio = self.precio()
+    //   gluten = self.gluten()
+    //   sabor = self.sabor()
+    // } 
 
-    override method gramos() = self.golosinaBase().gramos() + baniado
+    override method gramos() = self.golosinaBase().gramos() + baniado.max(0)
     override method precio() = self.golosinaBase().precio() + 2
     override method gluten() = self.golosinaBase().gluten()
     override method sabor() = self.golosinaBase().sabor()
 }
-// const carameloBaniado = new GolosinaBaniada( golosinaBase = new Caramelo() )
+const carameloBaniado = new GolosinaBaniada( golosinaBase = new Caramelo() )
 
 //*****************************************************************
-class PastillaTutFrut inherits Golosina(sabor = frutilla, gramos = 5) {
+class PastillaTutFrut inherits Golosina(sabor = frutilla, gramos = 5, precio = 0) {
     var property m = 0
 
     override method mordisco() {
       sabor = sabor.siguiente() 
     }
-    method setPrecio() {
-        if (self.gluten()) { self.precio(7) }
-        else { self.precio(10) }
+    override method precio() {
+        return if (self.gluten()) 7 
+        else  10 
     }
 }
 const pastillaSinGluten = new PastillaTutFrut(gluten = false)
@@ -131,25 +130,19 @@ object vainilla {
 object mariano {
   const property bolsa = []
 
-  method comprar(golosina) {
-    bolsa.add(golosina)
-  }
-  method desechar(golosina) {
-    bolsa.remove(golosina)
-  }
-  method probarGolosina() {
-    bolsa.forEach { g => g.mordisco() }
-  }
-  method hayGolosinasSinTACC() = bolsa.any { g => g.gluten() }
-  method preciosCuidados() = bolsa.all { g => g.precio() < 10 }
-  method golosinaDeSabor(sabor) = bolsa.find { g => g.sabor() == sabor }
-  method golosinasDeSabor(sabor) = bolsa.filter { g => g.sabor() == sabor}
-  method sabores() = bolsa.map{ g => g.sabor() }.asSet()
-  method golosinaMasCara() = bolsa.map{g => g.precio()}.max()
-  method pesoGolosinas() = bolsa.sum { g => g.gramos() }
+  method comprar(golosina) { bolsa.add(golosina) }
+  method desechar(golosina) { bolsa.remove(golosina) }
+  method probarGolosinas() { bolsa.forEach { golosina => golosina.mordisco() } }
+  method hayGolosinasSinTACC() = bolsa.any { golosina => golosina.gluten() }
+  method preciosCuidados() = bolsa.all { golosina => golosina.precio() < 10 }
+  method golosinaDeSabor(sabor) = bolsa.find { golosina => golosina.sabor() == sabor }
+  method golosinasDeSabor(sabor) = bolsa.filter { golosina => golosina.sabor() == sabor}
+  method sabores() = bolsa.map{ golosina => golosina.sabor() }.asSet()
+  method golosinaMasCara() = bolsa.map{golosina => golosina.precio()}.max()
+  method pesoGolosinas() = bolsa.sum { golosina => golosina.gramos() }
 
-  method golosinasFaltantes(golosinasDeseadas) = golosinasDeseadas.filter{ g => !(bolsa.contains(g))}
-  method gustosFaltantes(gustosDeseados) = gustosDeseados.filter { s => !(bolsa.any{g => g.sabor() == s})}
+  method golosinasFaltantes(golosinasDeseadas) = golosinasDeseadas.filter{ golosina => !(bolsa.contains(golosina))}
+  method gustosFaltantes(gustosDeseados) = gustosDeseados.filter { sabor => !(bolsa.any{golosina => golosina.sabor() == sabor})}
 
   method baniar(unaGolosina) {
     bolsa.add(new GolosinaBaniada(golosinaBase = unaGolosina))

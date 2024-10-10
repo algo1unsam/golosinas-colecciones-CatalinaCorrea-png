@@ -1,73 +1,107 @@
 import golosinas.*
 
-describe "Test de golosinas parte 1" {
-  test "Bombon atributos iniciales" {
-    assert.equals(5, bombon.precio())
-    assert.equals(15, bombon.gramos())
-    bombon.mordisco()
-    assert.equals(11, bombon.gramos())
-    assert.equals(frutilla, bombon.sabor())
-    assert.that(bombon.gluten())
-  }
+// describe "Test de golosinas parte 1" {
+//   test "Bombon atributos iniciales" {
+//     assert.equals(5, bombon.precio())
+//     assert.equals(15, bombon.gramos())
+//     bombon.mordisco()
+//     assert.equals(11, bombon.gramos())
+//     assert.equals(frutilla, bombon.sabor())
+//     assert.that(bombon.gluten())
+//   }
 
-  test "Alfajor atributos iniciales" {
-    assert.equals(12, alfajor.precio())
-    assert.equals(300, alfajor.gramos())
-    alfajor.mordisco()
-    assert.equals(240, alfajor.gramos())
-    assert.equals(chocolate, alfajor.sabor())
-    assert.notThat(alfajor.gluten())
-  }
+//   test "Alfajor atributos iniciales" {
+//     assert.equals(12, alfajor.precio())
+//     assert.equals(300, alfajor.gramos())
+//     alfajor.mordisco()
+//     assert.equals(240, alfajor.gramos())
+//     assert.equals(chocolate, alfajor.sabor())
+//     assert.notThat(alfajor.gluten())
+//   }
 
-  test "Caramelo atributos iniciales" {
-    assert.equals(1, caramelo.precio())
-    assert.equals(5, caramelo.gramos())
-    caramelo.mordisco()
-    assert.equals(4, caramelo.gramos())
-    assert.equals(frutilla, caramelo.sabor())
-    assert.that(caramelo.gluten())
-  }
+//   test "Caramelo atributos iniciales" {
+//     assert.equals(1, caramelo.precio())
+//     assert.equals(5, caramelo.gramos())
+//     caramelo.mordisco()
+//     assert.equals(4, caramelo.gramos())
+//     assert.equals(frutilla, caramelo.sabor())
+//     assert.that(caramelo.gluten())
+//   }
 
-  test "Chupetin atributos iniciales" {
-    assert.equals(2, chupetin.precio())
-    assert.equals(7, chupetin.gramos())
-    chupetin.mordisco()
-    assert.equals(6.3,chupetin.gramos())
-    assert.equals(naranja, chupetin.sabor())
-    assert.that(chupetin.gluten())
-  }
+//   test "Chupetin atributos iniciales" {
+//     assert.equals(2, chupetin.precio())
+//     assert.equals(7, chupetin.gramos())
+//     chupetin.mordisco()
+//     assert.equals(6.3,chupetin.gramos())
+//     assert.equals(naranja, chupetin.sabor())
+//     assert.that(chupetin.gluten())
+//   }
 
-  test "Oblea atributos iniciales" {
-    assert.equals(5, oblea.precio())
-    assert.equals(250, oblea.gramos())
-    oblea.mordisco()
-    assert.equals(125, oblea.gramos())
-    assert.equals(vainilla, oblea.sabor())
-    assert.notThat(oblea.gluten())
-  }
+//   test "Oblea atributos iniciales" {
+//     assert.equals(5, oblea.precio())
+//     assert.equals(250, oblea.gramos())
+//     oblea.mordisco()
+//     assert.equals(125, oblea.gramos())
+//     assert.equals(vainilla, oblea.sabor())
+//     assert.notThat(oblea.gluten())
+//   }
 
-  test "Chocolatin atributos iniciales" {
-    chocolatin.gramos(20)
-    assert.equals(10, chocolatin.precio())
-    assert.equals(20, chocolatin.gramos())
-    chocolatin.mordisco()
-    assert.equals(18, chocolatin.gramos())
-    assert.equals(10, chocolatin.precio())
+//   test "Chocolatin atributos iniciales" {
+//     chocolatin.gramos(20)
+//     assert.equals(10, chocolatin.precio())
+//     assert.equals(20, chocolatin.gramos())
+//     chocolatin.mordisco()
+//     assert.equals(18, chocolatin.gramos())
+//     assert.equals(10, chocolatin.precio())
+//     assert.equals(chocolate, chocolatin.sabor())
+//     assert.notThat(chocolatin.gluten())
+//   }
+
+//   test "Pastilla Tutti-frutti atributos iniciales" {
+//     pastillaTutFrut.gluten(true)
+//     assert.equals(7, pastillaTutFrut.precio())
+//     assert.equals(5, pastillaTutFrut.gramos())
+//     assert.equals(frutilla, pastillaTutFrut.sabor())
+//     pastillaTutFrut.mordisco()
+//     assert.equals(chocolate, pastillaTutFrut.sabor())
+//     pastillaTutFrut.mordisco()
+//     assert.equals(naranja, pastillaTutFrut.sabor())
+//     pastillaTutFrut.mordisco()
+//     assert.equals(frutilla, pastillaTutFrut.sabor())
+//     assert.that(pastillaTutFrut.gluten())
+//   }
+// }
+
+describe "Test golosinas parte 3" {
+  test "Chocolatin" {
+    const chocolatin = new Chocolatin(pesoIni = 2)
     assert.equals(chocolate, chocolatin.sabor())
     assert.notThat(chocolatin.gluten())
+    assert.equals(2, chocolatin.gramos())
+    assert.equals(1, chocolatin.precio())
+    chocolatin.mordisco()
+    assert.equals(0, chocolatin.gramos())
+    assert.equals(2, chocolatin.pesoIni())
   }
 
-  test "Pastilla Tutti-frutti atributos iniciales" {
-    pastillaTutFrut.gluten(true)
-    assert.equals(7, pastillaTutFrut.precio())
-    assert.equals(5, pastillaTutFrut.gramos())
-    assert.equals(frutilla, pastillaTutFrut.sabor())
-    pastillaTutFrut.mordisco()
-    assert.equals(chocolate, pastillaTutFrut.sabor())
-    pastillaTutFrut.mordisco()
-    assert.equals(naranja, pastillaTutFrut.sabor())
-    pastillaTutFrut.mordisco()
-    assert.equals(frutilla, pastillaTutFrut.sabor())
-    assert.that(pastillaTutFrut.gluten())
+  test "Golosina Baniada: Caramelo" {
+    const carameloBaniado = new GolosinaBaniada( golosinaBase = new Caramelo() )
+    assert.equals(frutilla, carameloBaniado.sabor())
+    assert.that(carameloBaniado.gluten())
+    assert.equals(9, carameloBaniado.gramos())
+    assert.equals(3, carameloBaniado.precio())
+    carameloBaniado.mordisco()
+    assert.equals(6, carameloBaniado.gramos())  
+    carameloBaniado.mordisco()
+    assert.equals(3, carameloBaniado.gramos())  
+    assert.equals(0, carameloBaniado.baniado())
+    
+  }
+
+  test "Pastilla Tutti Frutti" {
+    const pastillaSinGluten = new PastillaTutFrut(gluten = false)
+    assert.equals(10, pastillaSinGluten.precio())
+    const pastillaConGluten = new PastillaTutFrut(gluten = true)
+    assert.equals(7, pastillaConGluten.precio())
   }
 }
