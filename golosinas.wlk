@@ -154,3 +154,11 @@ object juliana {
     const property gustosDeseados = #{chocolate,frutilla}
 }
 
+
+//* PARA PROBAR EN CONSOLA REPL
+// mariano.baniar(new Caramelo())
+// mariano.baniar(new GolosinaBaniada(golosinaBase = new Alfajor()))
+// mariano.probarGolosinas()
+// mariano.golosinaMasCara()
+// mariano.baniar(new Caramelo())
+// mariano.bolsa().map{ golosina => golosina.golosinaBase()}
